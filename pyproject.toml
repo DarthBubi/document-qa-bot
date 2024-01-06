@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "documents_qa"
+version = "0.1.0"
+description = ""
+authors = ["Johannes Hackbarth"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+langchain = "^0.0.331"
+openai = "^0.28.1"
+pypdf = "^3.17.0"
+jupyter = "^1.0.0"
+chromadb = "<0.4.16"
+tiktoken = "^0.5.1"
+InstructorEmbedding = "^1.0.1"
+torch = "^2.1.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
