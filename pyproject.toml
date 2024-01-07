@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "documents_qa"
+name = "document_qa_bot"
 version = "0.1.0"
 description = ""
 authors = ["Johannes Hackbarth"]
@@ -14,6 +14,9 @@ chromadb = "<0.4.16"
 tiktoken = "^0.5.1"
 InstructorEmbedding = "^1.0.1"
 torch = "^2.1.0"
+flask = "^3.0.0"
+sentence-transformers = "^2.2.2"
+pysqlite3-binary = "^0.5.2.post2"
 
 [tool.poetry.dev-dependencies]
 

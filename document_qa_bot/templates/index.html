@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Question-Answering System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var question = document.getElementById('question').value;
+
+            fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'question=' + encodeURIComponent(question)
+            })
+            .then(response => response.json())
+            .then(data => {
+                var converter = new showdown.Converter(),
+                markdown = '## Answer\n\n' + data.answer + '\n\n## Source\n\n' + data.answer,
+                html = converter.makeHtml(markdown);
+                document.getElementById('output').innerHTML = html;
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>PDF Question-Answering System</h1>
+    <form action="/" method="post">
+        <label for="question">Enter your question:</label><br>
+        <input type="text" id="question" name="question"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="output">
+    </div>
+</body>
+</html>
