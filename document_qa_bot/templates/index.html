@@ -4,35 +4,42 @@
     <title>PDF Question-Answering System</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <script>
+        window.onload = function() {
         document.querySelector('form').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            var question = document.getElementById('question').value;
+            let query = document.getElementById('query').value;
+            document.getElementById('output').innerHTML = 'Generating answer...';
 
             fetch('/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: 'question=' + encodeURIComponent(question)
+                body: 'query=' + encodeURIComponent(query)
             })
             .then(response => response.json())
             .then(data => {
                 var converter = new showdown.Converter(),
-                markdown = '## Answer\n\n' + data.answer + '\n\n## Source\n\n' + data.answer,
+                markdown = '## Answer\n\n' + data.answer + '\n\n## Source\n\n' + data.source_documents,
                 html = converter.makeHtml(markdown);
                 document.getElementById('output').innerHTML = html;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
             });
         });
+    }
     </script>
 </head>
 <body>
-    <h1>PDF Question-Answering System</h1>
-    <form action="/" method="post">
-        <label for="question">Enter your question:</label><br>
-        <input type="text" id="question" name="question"><br>
+    <h1>Document QA Bot</h1>
+    <form id="queryForm">
+        <label for="query">Enter your question:</label><br>
+        <input type="text" id="query" name="query"><br>
         <input type="submit" value="Submit">
     </form>
+    <h2>QA Bot output:</h2>
     <div id="output">
     </div>
 </body>
