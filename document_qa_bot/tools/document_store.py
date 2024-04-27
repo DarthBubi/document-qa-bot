@@ -5,9 +5,9 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 
-from langchain.document_loaders import PyPDFDirectoryLoader
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.document_loaders import PyPDFDirectoryLoader
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
 
 class DocumentStore:
 

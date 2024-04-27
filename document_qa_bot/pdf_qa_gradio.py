@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from langchain.chains import RetrievalQA
 from langchain.globals import set_llm_cache
 from langchain.cache import InMemoryCache
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 
 from tools.document_store import DocumentStore
